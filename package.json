@@ -1,0 +1,22 @@
+{
+  "name": "epilappsy",
+  "version": "1.0.0",
+  "description": "App developed to help a friend control her epileptic crisis in an easier way through her phone. (Training with AngularJS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcastroemello/epilappsy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcastroemello/epilappsy/issues"
+  },
+  "homepage": "https://github.com/lcastroemello/epilappsy#readme",
+  "dependencies": {
+    "angularjs": "0.0.1"
+  }
+}
