@@ -3,7 +3,7 @@ let db;
 
 var dbUrl =
     process.env.DATABASE_URL ||
-    "postgres://postgres:postgres@localhost:5432/socialmedia";
+    "postgres://postgres:postgres@localhost:5432/epilappsy";
 
 db = spicedPg(dbUrl);
 // }
@@ -15,12 +15,11 @@ exports.addUser = function addUser(
     last_name,
     email,
     password,
-    group_tag
 ) {
-    // console.log("db addSignature works");
+    console.log("db addSignature works");
     return db.query(
-        "INSERT INTO users (first, last, email, password_digest, group_tag) VALUES ($1, $2, $3, $4, $5) RETURNING id",
-        [first_name, last_name, email, password, group_tag]
+        "INSERT INTO users (first, last, email, password_digest) VALUES ($1, $2, $3, $4) RETURNING id",
+        [first_name, last_name, email, password]
     );
 };
 

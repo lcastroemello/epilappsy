@@ -96,6 +96,61 @@ function checkPassword(textEnteredInLoginForm, hashedPasswordFromDatabase) {
     });
 }
 
+// ------------------REGISTERING NEW USERS-------------------
+
+app.post("/register", function(req, res) {
+    console.log('post request works');
+    const {
+        first,
+        last,
+        email,
+        pass,
+        confpass
+    } = req.body;
+    if (pass === confpass) {
+        hashPassword(pass)
+            .then(hash => {
+                return db.addUser(first, last, email, hash);
+            })
+            .then(data => {
+                req.session.userId = data.rows[0].id;
+                console.log(data.rows[0].id);
+                res.json({ success: true });
+            })
+            .catch(err => {
+                console.log("register post err", err);
+                res.json({ success: false });
+            });
+    } else {
+        res.json({ passconf: false });
+    }
+});
+
+//-------------------USER LOGIN-----------------------------
+app.post("/login", function(req, res) {
+    db.getUserByEmail(req.body.email)
+        .then(info => {
+            if (info.rows.length > 0) {
+                checkPassword(req.body.pass, info.rows[0].password_digest).then(
+                    boolean => {
+                        if (!boolean) {
+                            res.json({ passfalse: true });
+                        } else {
+                            req.session.userId = info.rows[0].id;
+                            res.json({ success: true });
+                        }
+                    }
+                );
+            } else {
+                res.json({ usernoexist: true });
+            }
+        })
+        .catch(err => {
+            console.log("login post err", err);
+            res.json({ success: false });
+        });
+});
+
 // -----------------------RENDERING WELCOME (KEEP IT IN THE END)-----------------
 
 app.get("*", function(req, res) {

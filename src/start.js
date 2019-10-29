@@ -6,10 +6,10 @@ import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
 import reducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { init } from "./socket";
+// import { init } from "./socket";
 
 import Welcome from "./Welcome";
-// import App from "./app";
+import App from "./app";
 
 const store = createStore(
     reducer,
@@ -17,18 +17,18 @@ const store = createStore(
 );
 
 let elem;
-// if (location.pathname == "/welcome") {
-//they are logged out
-elem = <Welcome />;
-// } else {
-//     //they are logged in
-//     init(store);
-//     initgroup(store);
-//     elem = (
-//         <Provider store={store}>
-//             <App />
-//         </Provider>
-//     );
-// }
+if (location.pathname == "/welcome") {
+// they are logged out
+    elem = <Welcome />;
+} else {
+    //they are logged in
+    // init(store);
+    // initgroup(store);
+    elem = (
+        // <Provider store={store}>
+        <App />
+        // </Provider>
+    );
+}
 
 ReactDOM.render(elem, document.querySelector("main"));

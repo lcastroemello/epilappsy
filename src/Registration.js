@@ -15,13 +15,12 @@ export default class Registration extends React.Component {
     submit() {
         console.log("testing state", this.state);
         axios
-            .post("/Register", {
+            .post("/register", {
                 first: this.state.first,
                 last: this.state.last,
                 email: this.state.email,
                 pass: this.state.pass,
                 confpass: this.state.confpass,
-                group_classes: this.state.group_classes
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -39,90 +38,83 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{fontSize: '2rem',border: "none", display: 'flex', flexDirection: 'column',  fontFamily: "sans-serif",
+                textAlign: "center"}}>
                 {this.state.error && (
                     <div
-                        style={{
-                            color: "red",
-                            fontSize: 1 + "rem",
-                            background: "#334431"
-                        }}
                         className="error"
                     >
-                        Ooops! Something went wrong. Try again 🥀
+                        Ooops! Something went wrong. Try again 🤒
                     </div>
                 )}
                 {this.state.passerror && (
                     <div
-                        style={{
-                            color: "red",
-                            fontSize: 1 + "rem",
-                            background: "#334431"
-                        }}
                         className="error"
                     >
                         Your passwords do not match. We know, it is hard with
-                        the ***. Try again 🥀
+                        the ***. Try again 🤒
                     </div>
                 )}
-                <h1>Register:</h1>
+                <h1
+                    style={{
+                        color: "#5C3C02",
+                    }}
+                >
+                    Register
+                </h1>
                 <br />
                 <input
                     name="first"
                     placeholder="first name"
                     onChange={e => this.handleChange(e)}
-                    style={{
-                        border: "none"
-                    }}
+                    className="input"
                 />
                 <br />
                 <input
                     name="last"
                     placeholder="last name"
+                    className="input"
                     onChange={e => this.handleChange(e)}
-                    style={{
-                        border: "none"
-                    }}
+                    
                 />
                 <br />
                 <input
                     name="email"
                     type="email"
                     placeholder="email"
+                    className="input"
                     onChange={e => this.handleChange(e)}
-                    style={{
-                        border: "none"
-                    }}
+                   
                 />
                 <br />
                 <input
                     name="pass"
                     type="password"
                     placeholder="password"
+                    className="input"
                     onChange={e => this.handleChange(e)}
-                    style={{
-                        border: "none"
-                    }}
+                    
                 />
                 <br />
                 <input
                     name="confpass"
                     type="password"
+                    className="input"
                     placeholder="confirm password"
                     onChange={e => this.handleChange(e)}
-                    style={{
-                        border: "none"
-                    }}
                 />
                 <br />
 
                 <style type="text/css">
-                    .button{`{background: #f5fcef;}`}
+                    .button{`{background: #f5fcef; width: 75vw; height:3rem; font-size: 2rem; }`}
                     .button:hover {`{background: #67912d;}`}
+                    .error {`{color: "red";
+                            background: "#334431"
+                        }`}
+                    .input {`{width: 75vw; height:2rem; font-size: 2rem}`}
                 </style>
                 <button
                     className="button"
-                    style={{ border: "none" }}
                     onClick={e => this.submit(e)}
                 >
                     Register

@@ -9,54 +9,48 @@ export default function Welcome() {
         <HashRouter>
             <div
                 style={{
-                    display: "grid",
-                    gridTemplateRows: "1fr 1fr",
-                    gridTemplateColumns: "1fr 1fr",
-                    justifySelf: "center",
+                    display: "flex",
+                    flexDirection: "column",
                     background: "#f5fcef",
                     height: "100vh",
                     width: "100vw",
-                    backgroundImage: 'url("rootsLogo.png")',
                     backgroundSize: "cover"
                 }}
             >
-                <div
-                    style={{
-                        gridRow: "1/2",
-                        gridColumn: "2/3",
-                        paddingRight: "3rem"
-                    }}
-                >
+                <div>
                     <h1
                         style={{
+                            flexGrow: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
                             color: "#2b570d",
                             fontFamily: "Lacquer, sans-serif",
-                            fontSize: "4rem",
-                            display: "grid",
-                            justifyItems: "right",
+                            fontSize: "5rem",
+                            padding: '5rem',
+                            textAlign: "center",
                             filter: "drop-shadow(-20px 20px 30px #f5fcef)"
                         }}
                     >
-                        Welcome to <br /> Mycorrhizae!
+                        Welcome to <br /> Epilappsy!
                     </h1>
                     <h2
                         style={{
+                            flexDirection: 'column',
+                            display: 'flex',
                             color: "#334431",
                             fontFamily: "Lacquer, sans-serif",
-                            fontSize: "1.3rem",
-                            display: "grid",
-                            justifyItems: "right"
+                            fontSize: "3rem",
+                            textAlign: 'center'
                         }}
                     >
-                        Be a root of change! <br /> Learn, plant, eat, enjoy!
+                    👩‍⚕️Control your crisis in <br/> three easy steps👨‍⚕️
                     </h2>
                 </div>
                 <div
                     style={{
-                        gridRow: "2/3",
-                        gridColumn: "1/2",
-                        width: "20rem",
-                        display: "grid",
+                        width: "100vw",
+                        display: "flex",
+                        flexDirection: 'column',
                         justifySelf: "center",
                         alignSelf: "center",
                         alignItems: "center",

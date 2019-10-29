@@ -28,32 +28,32 @@ export async function endFriendship(id) {
     };
 }
 
-export function chatMessages(msgs) {
-    return {
-        type: "GET_CHAT_MESSAGES",
-        msgs: msgs
-    };
-}
+// export function chatMessages(msgs) {
+//     return {
+//         type: "GET_CHAT_MESSAGES",
+//         msgs: msgs
+//     };
+// }
 
-export function newChatMessage(msg) {
-    console.log("testing msg in actions", msg);
-    return {
-        type: "POST_NEW_CHAT_MESSAGE",
-        msg
-    };
-}
+// export function newChatMessage(msg) {
+//     console.log("testing msg in actions", msg);
+//     return {
+//         type: "POST_NEW_CHAT_MESSAGE",
+//         msg
+//     };
+// }
 
-export function groupMessages(msgs) {
-    return {
-        type: "GET_GROUP_MESSAGES",
-        groupmsgs: msgs
-    };
-}
+// export function groupMessages(msgs) {
+//     return {
+//         type: "GET_GROUP_MESSAGES",
+//         groupmsgs: msgs
+//     };
+// }
 
-export function newGroupMessage(msg) {
-    console.log("testing group message in actions", msg);
-    return {
-        type: "POST_NEW_GROUP_MESSAGE",
-        msg
-    };
-}
+// export function newGroupMessage(msg) {
+//     console.log("testing group message in actions", msg);
+//     return {
+//         type: "POST_NEW_GROUP_MESSAGE",
+//         msg
+//     };
+// }
