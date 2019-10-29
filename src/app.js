@@ -1,315 +1,103 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "./axios";
 import { Route, BrowserRouter, Link } from "react-router-dom";
+import Slider from 'react-rangeslider';
 
-import Uploader from "./uploader";
-import ProfilePic from "./profilepic";
-import Profile from "./profile";
-import BioEditor from "./bioeditor";
-import Brofile from "./brofile";
-import FindBros from "./findpeople";
-import Friends from "./friends";
-import Chat from "./chat";
-import GroupChat from "./groupChat";
-import ProfileEditor from "./profileeditor";
 
-export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            uploaderIsVisible: false,
-            bio: ""
-        };
-        this.editprofile = this.editprofile.bind(this);
-    } //end of constructor
-    async componentDidMount() {
-        const { data } = await axios.get("/user");
-        this.setState(data);
-    }
-
-    editprofile(newprofiledetails) {
-        console.log("testing state in app", this.state);
-        this.setState(newprofiledetails);
-    }
-
-    render() {
-        if (!this.state.id) {
-            return <img src="growing.gif" />;
+export default function App()  { 
+    // defining the crises types
+    const [type, setType] = useState();
+    const types = {
+        'fallU': 'Fall down (unconscious)', 
+        'sitting': "Body doesn't answer (sitting)", 
+        'standing': "Body doesn't answer (standing/not stable)", 
+        'fallC': "Body doesn't answer (fall down / conscious)"
+    };
+    // defining the context
+    const [context, setContext] = useState([]);
+    const factors = {
+        'eat': "Didn't eat enough", 
+        'sleep': "Poor sleeping",
+        'meds': "Forgot to take medications / late",
+        'stress': "Under extra-stress", 
+        'period': "Have my period", 
+        'tired': "Extra tired"
+    };
+    const formContext = e => {
+        if (context.indexOf(e) >= 0) {
+            // value already exists and it's being unclicked
+            let index = context.indexOf(e);
+            if (index > -1) {
+                context.splice(index, 1);
+            }
+            setContext(context);
+        } else {
+            // value is being clicked for the first time
+            context.push(e);
+            setContext(context);
         }
-        return (
-            <BrowserRouter>
-                <div
-                    style={{
-                        background: "#f5fcef",
-                        bottom: 0,
-                        display: "grid",
-                        gridTemplateRows: "8rem 1fr",
-                        gridTemplateColumns: "1fr",
-                        height: "100vh",
-                        width: "100vw"
-                    }}
-                >
-                    <div
-                        className="header"
-                        style={{
-                            gridRow: "1/2",
-                            gridColumn: "1/2",
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr 7rem",
-                            borderBottom: "solid #67912D 2px",
-                            padding: "2rem",
-                            zIndex: 1
-                        }}
-                    >
-                        <img
-                            className="images"
-                            style={{
-                                placeSelf: "center / start",
-                                gridColumn: 1 / 2,
-                                height: "4rem",
-                                width: "4rem"
-                            }}
-                            src="/rootsLogo.png"
-                            alt="roots logo"
-                        />
+    };
+    // setting the slider
+    const [vertical, setVertical] = useState(60);
+    const verticalLabels = {
+        0: '0',
+        30: '30sec',
+        60: '1min', 
+        90: '1min30',
+        120: '2min'
+    };
+    // submitting methods
+    const sendDataToDB = () => {
+        console.log('type', type, 'context', context, 'vertical', vertical);
+    };
 
-                        <div
-                            className="links"
-                            style={{
-                                gridColumn: "2 / 3",
-                                display: "flex",
-                                justifyContent: "space-around",
-                                alignSelf: "center",
-                                fontFamily: "Lacquer, sans-serif",
-                                fontSize: "1.3rem"
-                            }}
-                        >
-                            <style type="text/css">
-                                .link{`{color:#67912d; textDecoration:none;}`}
-                                .link:hover {`{color:#334431;}`}
-                            </style>
-                            <Link
-                                className="link"
-                                style={{
-                                    textDecoration: "none"
-                                }}
-                                to="/users"
-                            >
-                                Find buddy branches!
-                            </Link>
-                            <Link
-                                className="link"
-                                style={{
-                                    textDecoration: "none"
-                                }}
-                                to="/friends"
-                            >
-                                My buddy branches
-                            </Link>
-                            <Link
-                                className="link"
-                                style={{
-                                    textDecoration: "none"
-                                }}
-                                to="/chat"
-                            >
-                                Chat
-                            </Link>
-                            <Link
-                                className="link"
-                                style={{
-                                    textDecoration: "none"
-                                }}
-                                to="/"
-                            >
-                                My profile
-                            </Link>
-                        </div>
-                        <ProfilePic
-                            id="images"
-                            picture={this.state.picture}
-                            first={this.state.first}
-                            last={this.state.last}
-                            size={"normal"}
-                            onClick={() =>
-                                this.setState({ uploaderIsVisible: true })
-                            }
-                        />
+    return (
+        <div>
+            <h1>Enter your crisis info and click on save!</h1>
+            <h2>1) What type of crisis did you have?</h2>
+            <br/>
+            {Object.keys(types).map((item, i) => {
+                return (
+                    <div key={i}>
+                        <input id={item} name='Type' type='radio' value={item} onClick={e => setType(e.target.value)}></input>
+                        <label htmlFor={item} >{types[item]}</label>
+                        <br/>
                     </div>
-                    {this.state.uploaderIsVisible && (
-                        <div
-                            style={{
-                                gridRow: "1/3",
-                                gridColumn: "1/2",
-                                zIndex: 3
-                            }}
-                        >
-                            <Uploader
-                                profilePic={
-                                    <ProfilePic
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        picture={this.state.picture}
-                                        size={"jumbo"}
-                                    />
-                                }
-                                done={picture =>
-                                    this.setState({
-                                        picture,
-                                        uploaderIsVisible: false
-                                    })
-                                }
-                                close={() =>
-                                    this.setState({ uploaderIsVisible: false })
-                                }
-                            />
-                        </div>
-                    )}
-
-                    <div>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%",
-                                        paddingLeft: "2rem",
-                                        paddingTop: "2rem"
-                                    }}
-                                >
-                                    <Profile
-                                        picture={this.state.picture}
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        bioEditor={
-                                            <BioEditor
-                                                bio={this.state.bio}
-                                                done={bio =>
-                                                    this.setState({ bio })
-                                                }
-                                                close={() =>
-                                                    this.setState({
-                                                        editing: false
-                                                    })
-                                                }
-                                            />
-                                        }
-                                        profileEditor={
-                                            <ProfileEditor
-                                                first={this.state.first}
-                                                last={this.state.last}
-                                                group_tag={this.state.group_tag}
-                                                done={this.editprofile}
-                                                close={() =>
-                                                    this.setState({
-                                                        editing: false
-                                                    })
-                                                }
-                                            />
-                                        }
-                                        profilePic={
-                                            <ProfilePic
-                                                first={this.state.first}
-                                                last={this.state.last}
-                                                picture={this.state.picture}
-                                                size={"jumbo"}
-                                                onClick={() => {
-                                                    this.setState({
-                                                        uploaderIsVisible: true
-                                                    });
-                                                }}
-                                            />
-                                        }
-                                    />
-                                </div>
-                            )}
-                        />
-
-                        <Route
-                            path="/user/:id"
-                            render={props => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%"
-                                    }}
-                                >
-                                    <Brofile
-                                        key={props.match.url}
-                                        match={props.match}
-                                        history={props.history}
-                                        userId={this.state.id}
-                                    />
-                                </div>
-                            )}
-                        />
-
-                        <Route
-                            path="/users"
-                            render={props => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%"
-                                    }}
-                                >
-                                    <FindBros />
-                                </div>
-                            )}
-                        />
-
-                        <Route
-                            path="/friends"
-                            render={props => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%"
-                                    }}
-                                >
-                                    <Friends />
-                                </div>
-                            )}
-                        />
-
-                        <Route
-                            path="/chat"
-                            render={props => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%"
-                                    }}
-                                >
-                                    <Chat />
-                                </div>
-                            )}
-                        />
-
-                        <Route
-                            path="/groupchat"
-                            render={props => (
-                                <div
-                                    style={{
-                                        background: "#d8f2c1",
-                                        height: "100%",
-                                        width: "100%"
-                                    }}
-                                >
-                                    <GroupChat />
-                                </div>
-                            )}
-                        />
+                );
+            })}
+            <hr />
+            <h2>2) What was the context?</h2>
+            {Object.keys(factors).map((item, i) => {
+                return (
+                    <div key={i}>
+                        <input id={item} name='factor' type='checkbox' value={item} onClick={e => formContext(e.target.value)}></input>
+                        <label htmlFor={item} >{factors[item]}</label>
+                        <br/>
                     </div>
-                </div>
-            </BrowserRouter>
-        );
-    } //end of render
-} //end of class
+                );
+            })}
+            <hr />
+            <h2>3)How long did your crisis last?</h2>
+            <div className='slider custom-labels'>
+                <Slider
+                    value={vertical}
+                    orientation='vertical'
+                    labels={verticalLabels}
+                    min={0}
+                    max={120}
+                    onChange={e => setVertical(e)}/>
+            </div>
+            <hr />
+            <button
+                style = {{ color: 'white',
+                    backgroundColor: '#3f87a6',
+                    fontSize: '1rem',
+                    margin: 'none',
+                    padding: '0.5rem',
+                    fontWeight: 'bold'}}
+                className="button"
+                onClick={() => sendDataToDB()}
+            >Save this crisis</button>
+        </div>
+    );
+}

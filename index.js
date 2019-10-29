@@ -99,7 +99,7 @@ function checkPassword(textEnteredInLoginForm, hashedPasswordFromDatabase) {
 // ------------------REGISTERING NEW USERS-------------------
 
 app.post("/register", function(req, res) {
-    console.log('post request works');
+
     const {
         first,
         last,
