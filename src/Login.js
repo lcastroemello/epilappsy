@@ -92,7 +92,7 @@ export default class Login extends React.Component {
                     Log in
                 </button>
                 <p>
-                    Not registered yet? <Link to="/"> Register! </Link>
+                    Not registered yet? <Link to="/"> Register </Link>
                 </p>
             </div>
         );

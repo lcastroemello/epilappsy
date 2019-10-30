@@ -120,7 +120,7 @@ export default class Registration extends React.Component {
                     Register
                 </button>
                 <p>
-                    Already registered? <Link to="/Login"> Log in! </Link>
+                    Already registered? <Link to="/Login"> Log in </Link>
                 </p>
             </div>
         );
