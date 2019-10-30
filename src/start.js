@@ -17,7 +17,7 @@ const store = createStore(
 );
 
 let elem;
-if (location.pathname == "/welcome") {
+if (location.pathname == "/Welcome") {
 // they are logged out
     elem = <Welcome />;
 } else {
