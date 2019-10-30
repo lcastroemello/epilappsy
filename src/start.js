@@ -8,7 +8,7 @@ import reducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 // import { init } from "./socket";
 
-import Welcome from "./Welcome";
+import Welcome from "./welcome";
 import App from "./app";
 
 const store = createStore(
@@ -17,7 +17,7 @@ const store = createStore(
 );
 
 let elem;
-if (location.pathname == "/Welcome") {
+if (location.pathname == "/welcome") {
 // they are logged out
     elem = <Welcome />;
 } else {
