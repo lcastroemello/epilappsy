@@ -20,7 +20,6 @@ export default function Welcome() {
                 <div>
                     <h1
                         style={{
-                            flexGrow: 1,
                             display: 'flex',
                             flexDirection: 'column',
                             color: "#2b570d",

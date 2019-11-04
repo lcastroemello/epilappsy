@@ -1,0 +1,27 @@
+import React, {useState} from "react";
+import axios from "./axios";
+
+export default function Types() {
+    // defining the crises types
+    const [type, setType] = useState();
+    const types = {
+        'fallU': 'Fall down (unconscious)', 
+        'sitting': "Body doesn't answer (sitting)", 
+        'standing': "Body doesn't answer (standing/not stable)", 
+        'fallC': "Body doesn't answer (fall down / conscious)"
+    };
+    return (
+        <div>
+            {Object.keys(types).map((item, i) => {
+                return (
+                    <div key={i}>
+                        <input id={item} name='Type' type='radio' value={item} onClick={e => setType(e.target.value)}></input>
+                        <label htmlFor={item} >{types[item]}</label>
+                        <br/>
+                    </div>
+                );
+            })}
+        </div>
+    );
+     
+}

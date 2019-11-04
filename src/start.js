@@ -21,14 +21,8 @@ if (location.pathname == "/welcome") {
 // they are logged out
     elem = <Welcome />;
 } else {
-    //they are logged in
-    // init(store);
-    // initgroup(store);
-    elem = (
-        // <Provider store={store}>
-        <App />
-        // </Provider>
-    );
+//they are logged in
+    elem =  <App />;
 }
 
 ReactDOM.render(elem, document.querySelector("main"));
