@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
 import reducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
-// import { init } from "./socket";
+
 
 import Welcome from "./welcome";
 import App from "./app";
@@ -22,7 +22,12 @@ if (location.pathname == "/welcome") {
     elem = <Welcome />;
 } else {
 //they are logged in
-    elem =  <App />;
+    elem =  (
+        <Provider store={store}> 
+            <App />
+        </Provider>
+   
+    );
 }
 
 ReactDOM.render(elem, document.querySelector("main"));
