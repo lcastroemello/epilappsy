@@ -1,11 +1,13 @@
-import React, {useState} from "react";
-import axios from "./axios";
+import React from "react";
 import Slider from 'react-rangeslider';
+import {updateCrisisDuration} from './actions';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function Duration() {
+    const dispatch = useDispatch();
     // setting the slider
-    const [vertical, setVertical] = useState(60);
-    const verticalLabels = {
+    const duration = useSelector(state => state && state.duration);
+    const durationLabels = {
         0: '0',
         30: '30sec',
         60: '1min', 
@@ -16,12 +18,12 @@ export default function Duration() {
     return (
         <div className='slider custom-labels'>
             <Slider
-                value={vertical}
+                value={duration}
                 orientation='vertical'
-                labels={verticalLabels}
+                labels={durationLabels}
                 min={0}
                 max={120}
-                onChange={e => setVertical(e)}/>
+                onChange={e => dispatch(updateCrisisDuration(e))}/>
         </div>
     );
 

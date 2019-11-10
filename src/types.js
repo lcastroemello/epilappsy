@@ -1,9 +1,11 @@
-import React, {useState} from "react";
-import axios from "./axios";
+import React from "react";
+import { useDispatch} from "react-redux";
+import {updateCrisisType} from './actions';
+
 
 export default function Types() {
+    const dispatch = useDispatch();
     // defining the crises types
-    const [type, setType] = useState();
     const types = {
         'fallU': 'Fall down (unconscious)', 
         'sitting': "Body doesn't answer (sitting)", 
@@ -15,7 +17,7 @@ export default function Types() {
             {Object.keys(types).map((item, i) => {
                 return (
                     <div key={i}>
-                        <input id={item} name='Type' type='radio' value={item} onClick={e => setType(e.target.value)}></input>
+                        <input id={item} name='Type' type='radio' value={item} onClick={e => dispatch(updateCrisisType(e.target.value))}></input>
                         <label htmlFor={item} >{types[item]}</label>
                         <br/>
                     </div>

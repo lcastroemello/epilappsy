@@ -6,7 +6,6 @@ const bcrypt = require("bcryptjs");
 const db = require("./sql/db");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
-// const s3 = require("./s3");
 const moment = require("moment");
 const config = require("./config");
 const server = require("http").Server(app);
@@ -149,6 +148,13 @@ app.post("/login", function(req, res) {
             console.log("login post err", err);
             res.json({ success: false });
         });
+});
+
+// --------------------------SAVING NEW CRISIS------------
+
+app.post("/saveCrisis/:crisisInfo", function(req, res){
+    const info = req.params.crisisInfo;
+    console.log('the crisis was saved', info);
 });
 
 // -----------------------RENDERING WELCOME (KEEP IT IN THE END)-----------------

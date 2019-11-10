@@ -1,11 +1,11 @@
-import React, {useState} from "react";
-import axios from "./axios";
+import React from "react";
+import {updateCrisisContext} from './actions';
+import {useDispatch, useSelector} from 'react-redux';
 import { Discovery } from "aws-sdk";
 
 export default function Context() {
+    const dispatch = useDispatch();
     // defining the context
-    const [context, setContext] = useState([]);
-
     const factors = {
         'eat': "Didn't eat enough", 
         'sleep': "Poor sleeping",
@@ -14,6 +14,7 @@ export default function Context() {
         'period': "Have my period", 
         'tired': "Extra tired"
     };
+    const context = useSelector(state=> state && state.context); 
 
     const formContext = e => {
         if (context.indexOf(e) >= 0) {
@@ -22,11 +23,11 @@ export default function Context() {
             if (index > -1) {
                 context.splice(index, 1);
             }
-            setContext(context);
+            dispatch(updateCrisisContext(context));
         } else {
             // value is being clicked for the first time
             context.push(e);
-            setContext(context);
+            dispatch(updateCrisisContext(context));
         }
     };
 
