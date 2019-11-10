@@ -127,6 +127,7 @@ app.post("/register", function(req, res) {
 
 //-------------------USER LOGIN-----------------------------
 app.post("/login", function(req, res) {
+
     db.getUserByEmail(req.body.email)
         .then(info => {
             if (info.rows.length > 0) {
@@ -152,9 +153,31 @@ app.post("/login", function(req, res) {
 
 // --------------------------SAVING NEW CRISIS------------
 
-app.post("/saveCrisis/:crisisInfo", function(req, res){
-    const info = req.params.crisisInfo;
-    console.log('the crisis was saved', info);
+app.post("/saveCrisis/:crisisInfo", async function(req, res){
+    const user_id = req.session.userId;
+    const type = JSON.parse(req.params.crisisInfo)[0];
+    const duration = JSON.parse(req.params.crisisInfo)[2];
+    const context = JSON.parse(req.params.crisisInfo)[1];
+    const eat = context.includes('eat') ? true : false;
+    const sleep = context.includes('sleep') ? true : false;
+    const meds = context.includes('meds') ? true : false;
+    const stress = context.includes('stress') ? true : false;
+    const periodTime = context.includes('period') ? true : false;
+    const tired = context.includes('tired') ? true : false;
+    const other = false; 
+
+    try {
+        const created_at = await db.addCrisis(user_id, type, duration, eat, sleep, meds, stress, periodTime, tired, other);
+        let timetag = moment(
+            created_at.rows[0].created_at,
+            moment.ISO_8601
+        ).format("DD.MMM.YYYY, HH:mm");
+        console.log("Crisis stored at", timetag);
+        res.json({created_at: timetag});
+    } catch (err) {
+        console.log('error in saving crisis', err);
+    }
+    
 });
 
 // -----------------------RENDERING WELCOME (KEEP IT IN THE END)-----------------

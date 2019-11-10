@@ -25,7 +25,7 @@ CREATE TABLE crisis (
     sleep BOOLEAN,
     meds BOOLEAN,
     stress BOOLEAN,
-    period BOOLEAN,
+    periodTime BOOLEAN,
     tired BOOLEAN,
     other VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

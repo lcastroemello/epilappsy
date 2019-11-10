@@ -23,6 +23,7 @@ export default function reducer(state = {
     if (action.type == 'SAVE_CRISIS') {
         state = {
             ...state,
+            created_at: action.timetag,
             addCrisisIsVisible: false
         };
     }

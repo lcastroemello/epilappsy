@@ -1,7 +1,6 @@
 import React from "react";
 import {updateCrisisContext} from './actions';
 import {useDispatch, useSelector} from 'react-redux';
-import { Discovery } from "aws-sdk";
 
 export default function Context() {
     const dispatch = useDispatch();

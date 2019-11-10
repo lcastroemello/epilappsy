@@ -22,10 +22,11 @@ export function updateCrisisDuration(crisisDuration) {
 }
 
 export async function saveCrisis(crisisInfo) {
-    await axios.post('saveCrisis/' + crisisInfo);
-    console.log('this is the info', crisisInfo);
+    const timetag = await axios.post('saveCrisis/' + crisisInfo);
+    console.log('timetag in action', timetag);
     return {
-        type: 'SAVE_CRISIS'
+        type: 'SAVE_CRISIS', 
+        created_at: timetag
     };
 }
 

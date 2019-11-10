@@ -14,6 +14,8 @@ export default function App()  {
     const type = useSelector(state=> state && state.type);
     const context = useSelector(state=> state && state.context);
     const duration = useSelector(state=> state && state.duration);
+    const created_at = useSelector(state => state && state.created_at);
+ 
 
     const saveCrisisInfo= () => {
         dispatch(saveCrisis(JSON.stringify([type, context, duration])));
@@ -35,8 +37,6 @@ export default function App()  {
                     <h2>3)How long did your crisis last?</h2>
                     <Duration/>
                     <hr />
-                    <h2>Confirm your selected crisis:</h2>
-                    <p>I had a <b>{type || 'add your crisis type'}</b> that lasted for <b>{duration|| 'add crisis duration'}</b> seconds. It happened on <b>{context || 'no special context'}</b></p>
                     <button
                         style = {{ color: 'white',
                             backgroundColor: '#3f87a6',
@@ -52,7 +52,6 @@ export default function App()  {
                 {!addCrisisIsVisible &&
             <div>
                 <h1>Your crisis was registered on our system!</h1>
-                <p>I had a {type || 'add your crisis type'} that lasted for {duration || 'add crisis duration'}. It happened on {context || 'no special context'}</p>
                 <button
                     style = {{ color: 'white',
                         backgroundColor: '#3f87a6',
