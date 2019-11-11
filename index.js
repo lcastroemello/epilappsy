@@ -7,7 +7,6 @@ const db = require("./sql/db");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const moment = require("moment");
-const config = require("./config");
 const server = require("http").Server(app);
 
 app.use(express.static("./static"));
