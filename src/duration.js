@@ -19,11 +19,14 @@ export default function Duration() {
         <div className='slider custom-labels'>
             <Slider
                 value={duration}
-                orientation='vertical'
+                orientation='horizontal'
                 labels={durationLabels}
                 min={0}
                 max={120}
-                onChange={e => dispatch(updateCrisisDuration(e))}/>
+                onChange={e => dispatch(updateCrisisDuration(e))}
+                style={{fontSize: '3rem'}}/>
+            <br/>
+                
         </div>
     );
 

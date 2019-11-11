@@ -25,22 +25,23 @@ export default function App()  {
         <BrowserRouter>
             <div>
                 {addCrisisIsVisible && 
-                <div>
-                    <h1>Enter your crisis info and click on save!</h1>
-                    <h2>1) What type of crisis did you have?</h2>
+                <div style={{background: "#f5fcef", margin:0}}>
+                    <h1 style={{fontSize: '4rem', textAlign: 'center', color: "#334431",
+                        fontFamily: "Lacquer, sans-serif"}} >Enter your crisis info and click on save!</h1>
+                    <h2 style={{fontSize: '3rem'}}>1) What type of crisis did you have?</h2>
                     <br/>
                     <Types/>
                     <hr />
-                    <h2>2) What was the context?</h2>
+                    <h2 style={{fontSize: '4rem'}} >2) What was the context?</h2>
                     <Context/>
                     <hr />
-                    <h2>3)How long did your crisis last?</h2>
+                    <h2 style={{fontSize: '4rem'}} >3)How long did your crisis last?</h2>
                     <Duration/>
                     <hr />
                     <button
                         style = {{ color: 'white',
                             backgroundColor: '#3f87a6',
-                            fontSize: '1rem',
+                            fontSize: '3rem',
                             margin: 'none',
                             padding: '0.5rem',
                             fontWeight: 'bold'}}
@@ -51,11 +52,11 @@ export default function App()  {
                 }
                 {!addCrisisIsVisible &&
             <div>
-                <h1>Your crisis was registered on our system!</h1>
+                <h1 style={{fontSize: '3rem'}} >Your crisis was registered on our system!</h1>
                 <button
                     style = {{ color: 'white',
                         backgroundColor: '#3f87a6',
-                        fontSize: '1rem',
+                        fontSize: '3rem',
                         margin: 'none',
                         padding: '0.5rem',
                         fontWeight: 'bold'}}

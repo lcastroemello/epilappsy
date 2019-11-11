@@ -34,7 +34,7 @@ export default function Context() {
         <div>
             {Object.keys(factors).map((item, i) => {
                 return (
-                    <div key={i}>
+                    <div style={{fontSize: '3rem'}} key={i}>
                         <input id={item} name='factor' type='checkbox' value={item} onClick={e => formContext(e.target.value)}></input>
                         <label htmlFor={item} >{factors[item]}</label>
                         <br/>

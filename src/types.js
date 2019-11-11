@@ -16,7 +16,7 @@ export default function Types() {
         <div>
             {Object.keys(types).map((item, i) => {
                 return (
-                    <div key={i}>
+                    <div key={i} style={{fontSize: '3rem'}}>
                         <input id={item} name='Type' type='radio' value={item} onClick={e => dispatch(updateCrisisType(e.target.value))}></input>
                         <label htmlFor={item} >{types[item]}</label>
                         <br/>
