@@ -4,7 +4,7 @@ import { HashRouter, Route } from "react-router-dom";
 import Registration from "./registration";
 import Login from "./login";
 
-export default function Welcome() {
+export default function Reception() {
     return (
         <HashRouter>
             <div

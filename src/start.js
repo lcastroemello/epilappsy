@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
@@ -8,7 +7,7 @@ import reducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 
-import Welcome from "./welcome";
+import Reception from "./reception";
 import App from "./app";
 
 const store = createStore(
@@ -17,9 +16,9 @@ const store = createStore(
 );
 
 let elem;
-if (location.pathname == "/welcome") {
+if (location.pathname == "/reception") {
 // they are logged out
-    elem = <Welcome />;
+    elem = <Reception />;
 } else {
 //they are logged in
     elem =  (

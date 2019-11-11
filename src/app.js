@@ -14,7 +14,7 @@ export default function App()  {
     const type = useSelector(state=> state && state.type);
     const context = useSelector(state=> state && state.context);
     const duration = useSelector(state=> state && state.duration);
-    const created_at = useSelector(state => state && state.created_at);
+   
  
 
     const saveCrisisInfo= () => {
