@@ -183,9 +183,9 @@ app.post("/saveCrisis/:crisisInfo", async function(req, res){
 // -----------------------RENDERING WELCOME (KEEP IT IN THE END)-----------------
 
 app.get("*", function(req, res) {
-    if (!req.session.userId && req.url != "/welcome") {
-        res.redirect("/welcome");
-    } else if (req.session.userId && req.url == "/welcome") {
+    if (!req.session.userId && req.url != "/reception") {
+        res.redirect("/reception");
+    } else if (req.session.userId && req.url == "/reception") {
         res.redirect("/app");
     } else {
         res.sendFile(__dirname + "/index.html");
