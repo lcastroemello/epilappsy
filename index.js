@@ -10,8 +10,14 @@ const moment = require("moment");
 const server = require("http").Server(app);
 
 app.use(express.static("./static"));
+let secrets;
+if (process.env.NODE_ENV == "production") {
+    secrets = process.env; // in prod the secrets are environment variables
+} else {
+    secrets = require("./secrets"); // in dev they are in secrets.json which is listed in .gitignore
+}
 const cookieSessionMiddleware = cookieSession({
-    secret: "its gonna be ok",
+    secret: secrets.cookiesecret,
     maxAge: 1000 * 60 * 60 * 24 * 14
 });
 app.use(cookieSessionMiddleware);

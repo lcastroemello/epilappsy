@@ -8,6 +8,12 @@ var dbUrl =
 db = spicedPg(dbUrl);
 // }
 
+//--------GETTING INFO from users--------------
+
+exports.getUserByEmail = function getUserbyEmail(email) {
+    return db.query("SELECT * FROM users WHERE email=$1", [email]);
+};
+
 //-------ADDING info to users-------------
 
 exports.addUser = function addUser(
