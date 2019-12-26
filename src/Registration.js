@@ -111,7 +111,7 @@ export default class Registration extends React.Component {
                     .error {`{color: "red";
                             background: "#334431"
                         }`}
-                    .input {`{width: 75vw; height:2rem; font-size: 2rem}`}
+                    .input {`{width: 75vw; height:5rem; font-size: 4rem}`}
                 </style>
                 <button
                     className="button"

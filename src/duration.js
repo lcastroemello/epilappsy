@@ -9,23 +9,24 @@ export default function Duration() {
     const duration = useSelector(state => state && state.duration);
     const durationLabels = {
         0: '0',
-        30: '30sec',
-        60: '1min', 
-        90: '1min30',
-        120: '2min'
+        30: '30s',
+        60: '1m', 
+        90: '1m30',
+        120: '2m'
     };
 
     return (
         <div className='slider custom-labels'>
             <Slider
                 value={duration}
-                orientation='horizontal'
                 labels={durationLabels}
                 min={0}
                 max={120}
-                onChange={e => dispatch(updateCrisisDuration(e))}
-                style={{fontSize: '3rem'}}/>
+                onChange={e => dispatch(updateCrisisDuration(e))}/>
             <br/>
+            <style type="text/css">
+                    .rangeslider__label-item {`{font-size: 3rem !important; bottom: 10px !important}`}
+            </style>
                 
         </div>
     );
