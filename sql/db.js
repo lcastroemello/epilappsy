@@ -33,7 +33,7 @@ exports.addUser = function addUser(
 exports.addCrisis = function addCrisis(
     user_id, type, duration_sec, eat, sleep, meds, stress, periodTime, tired, other
 ) {
-    return db.query("INSERT INTO crisis (user_id, type, duration_sec, eat, sleep, meds, stress, period, tired, other) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING created_at", [user_id, type, duration_sec, eat, sleep, meds, stress, periodTime, tired, other]);
+    return db.query("INSERT INTO crisis (user_id, type, duration_sec, eat, sleep, meds, stress, periodTime, tired, other) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING created_at", [user_id, type, duration_sec, eat, sleep, meds, stress, periodTime, tired, other]);
 };
 
 
