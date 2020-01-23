@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "./axios";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -55,42 +57,19 @@ export default class Login extends React.Component {
                         try again 🤒
                     </div>
                 )}
-                <h1
-                    style={{
-                        color: "#5C3C02",
-                        fontFamily: "sans-serif",
-                        textAlign: "center"
-                    }}
-                >
-                    Log in
-                </h1>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="email"
-                    className="input"
-                    onChange={e => this.handleChange(e)}
-                />
-                <br/>
-                <input
-                    name="pass"
-                    type="password"
-                    className="input"
-                    placeholder="password"
-                    onChange={e => this.handleChange(e)}
-                />
-                <br/>
+                 <form noValidate autoComplete='off' >
+                <h1 style={{ color: "#5C3C02"}} > Login </h1>
+                <TextField id='email' label='Email' variant='outlined' onChange={e => this.handleChange(e)} />
+                <br />
+                <TextField id='password' type='Password' label='Password' variant='outlined' onChange={e => this.handleChange(e)} />
+                <br />
+                <Button variant='contained' color='primary' className="button" onClick={e => this.submit(e)} >Login</Button>
+                 </form>
                 <style type="text/css">
-                    .button{`{background: #f5fcef; width: 75vw; height:3rem; font-size: 2rem; }`}
-                    .button:hover {`{background: #67912d;}`}
                     .error {`{color: "red";
                             background: "#334431"
                         }`}
-                    .input {`{width: 75vw; height:2rem; font-size: 2rem}`}
                 </style>
-                <button className="button" onClick={e => this.submit(e)}>
-                    Log in
-                </button>
                 <p>
                     Not registered yet? <Link to="/"> Register </Link>
                 </p>
