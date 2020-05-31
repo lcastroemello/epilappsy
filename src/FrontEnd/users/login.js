@@ -1,42 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "../axios";
+import axios from "../../structure/axios";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { useForm } from 'react-hook-form';
 
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+    const {register, handleSubmit} = useForm();
+    const onSubmit= formData => {
+        axios
+        .post("/login", {
+            email: formData.email,
+            pass: formData.password
+        })
+        .then(({ data }) => {
+            if (data.success) {
+                location.replace("./");
+            } else if (data.usernoexist) {
+                this.setState({
+                    noemail: true
+                });
+            } else if (data.passfalse) {
+                this.setState({
+                    noemail: true
+                });
+            } else {
+                this.setState({
+                    error: true
+                });
+            }
+        });
+    }
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
-    }
-    submit() {
-        axios
-            .post("/login", {
-                email: this.state.email,
-                pass: this.state.pass
-            })
-            .then(({ data }) => {
-                if (data.success) {
-                    location.replace("./");
-                } else if (data.usernoexist) {
-                    this.setState({
-                        noemail: true
-                    });
-                } else if (data.passfalse) {
-                    this.setState({
-                        noemail: true
-                    });
-                } else {
-                    this.setState({
-                        error: true
-                    });
-                }
-            });
     }
     render() {
         return (
@@ -57,13 +59,13 @@ export default class Login extends React.Component {
                         try again 🤒
                     </div>
                 )}
-                <form noValidate autoComplete='off' >
+                <form onSubmit={handleSubmit(onSubmit)} >
                     <h1 style={{ color: "#5C3C02"}} > Login </h1>
-                    <TextField id='email' label='Email' variant='outlined' onChange={e => this.handleChange(e)} />
+                    <input id='email' label='Email' name='email' variant='outlined' onChange={e => this.handleChange(e)} />
                     <br />
-                    <TextField id='password' type='Password' label='Password' variant='outlined' onChange={e => this.handleChange(e)} />
+                    <input id='password' type='Password' name='password' label='Password' variant='outlined' onChange={e => this.handleChange(e)} />
                     <br />
-                    <Button variant='contained' color='primary' className="button" onClick={e => this.submit(e)} >Login</Button>
+                    <input type='submit' >Login</input>
                 </form>
                 <style type="text/css">
                     .error {`{color: "red";

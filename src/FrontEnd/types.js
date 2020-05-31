@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch} from "react-redux";
-import {updateCrisisType} from './actions';
+import {updateCrisisType} from './reduxComponents/actions';
 
 
 export default function Types() {

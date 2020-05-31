@@ -1,5 +1,5 @@
 import React from "react";
-import {updateCrisisContext} from './actions';
+import {updateCrisisContext} from './reduxComponents/actions';
 import {useDispatch, useSelector} from 'react-redux';
 
 export default function Context() {

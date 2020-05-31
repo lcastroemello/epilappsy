@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from 'react-rangeslider';
-import {updateCrisisDuration} from './actions';
+import {updateCrisisDuration} from './reduxComponents/actions';
 import {useDispatch, useSelector} from 'react-redux';
 
 export default function Duration() {

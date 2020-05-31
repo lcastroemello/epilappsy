@@ -7,8 +7,8 @@ import reducer from "../FrontEnd/reduxComponents/reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 
-import Reception from "../FrontEnd/reception";
-import App from "../FrontEnd/app";
+import Reception from "../reception";
+import App from "../app";
 
 const store = createStore(
     reducer,

@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 
-import {saveCrisis, addNewCrisis} from './actions';
+import {saveCrisis, addNewCrisis} from './reduxComponents/actions';
 
 import Types from './types';
 import Context from './context';
