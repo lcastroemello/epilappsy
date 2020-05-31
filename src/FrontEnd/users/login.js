@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "./axios";
+import axios from "../axios";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -57,22 +57,19 @@ export default class Login extends React.Component {
                         try again 🤒
                     </div>
                 )}
-                 <form noValidate autoComplete='off' >
-                <h1 style={{ color: "#5C3C02"}} > Login </h1>
-                <TextField id='email' label='Email' variant='outlined' onChange={e => this.handleChange(e)} />
-                <br />
-                <TextField id='password' type='Password' label='Password' variant='outlined' onChange={e => this.handleChange(e)} />
-                <br />
-                <Button variant='contained' color='primary' className="button" onClick={e => this.submit(e)} >Login</Button>
-                 </form>
+                <form noValidate autoComplete='off' >
+                    <h1 style={{ color: "#5C3C02"}} > Login </h1>
+                    <TextField id='email' label='Email' variant='outlined' onChange={e => this.handleChange(e)} />
+                    <br />
+                    <TextField id='password' type='Password' label='Password' variant='outlined' onChange={e => this.handleChange(e)} />
+                    <br />
+                    <Button variant='contained' color='primary' className="button" onClick={e => this.submit(e)} >Login</Button>
+                </form>
                 <style type="text/css">
                     .error {`{color: "red";
                             background: "#334431"
                         }`}
-<<<<<<< HEAD
                     .input {`{width: 75vw; height:5rem; font-size: 4rem}`}
-=======
->>>>>>> c50ee91d8cc431688ea58e45585e4b7fe03e597a
                 </style>
                 <p>
                     Not registered yet? <Link to="/"> Register </Link>
